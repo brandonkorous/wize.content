@@ -24,35 +24,35 @@ spec:
           - name: "JwtAuthentication_ValidAudience"
             valueFrom:
               secretKeyRef: 
-                name: authentication-content-secrets
+                name: authentication-contents-secrets
                 key: JwtAuthentication_ValidAudience
           - name: "JwtAuthentication_ValidIssuer"
             valueFrom:
               secretKeyRef: 
-                name: authentication-content-secrets
+                name: authentication-contents-secrets
                 key: JwtAuthentication_ValidIssuer
           - name: "JwtAuthentication_SecurityKey"
             valueFrom:
               secretKeyRef: 
-                name: authentication-content-secrets
+                name: authentication-contents-secrets
                 key: JwtAuthentication_SecurityKey
           - name: "ConnectionStrings_WizeWorksContext"
             valueFrom:
               secretKeyRef: 
-                name: connectionstrings-content-secrets
+                name: connectionstrings-contents-secrets
                 key: ConnectionStrings_WizeWorksContext
           - name: "ConnectionStrings_TenantsContext"
             valueFrom:
               secretKeyRef: 
-                name: connectionstrings-content-secrets
+                name: connectionstrings-contents-secrets
                 key: ConnectionStrings_TenantsContext
           - name: "ConnectionStrings_ApplicationInsights"
             valueFrom:
               secretKeyRef: 
-                name: connectionstrings-content-secrets
+                name: connectionstrings-contents-secrets
                 key: ConnectionStrings_ApplicationInsights
           - name: "ConnectionStrings_Sentry"
             valueFrom:
               secretKeyRef: 
-                name: connectionstrings-content-secrets
+                name: connectionstrings-contents-secrets
                 key: ConnectionStrings_Sentry
