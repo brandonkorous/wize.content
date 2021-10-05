@@ -21,6 +21,26 @@ spec:
           env:
           - name: "ASPNETCORE_ENVIRONMENT"
             value: "Development"
+          - name: "Auth0_Authority"
+            valueFrom:
+              secretKeyRef: 
+                name: auth0-contents-secrets
+                key: Auth0_Authority
+          - name: "Auth0_ClientId"
+            valueFrom:
+              secretKeyRef: 
+                name: auth0-contents-secrets
+                key: Auth0_ClientId
+          - name: "Auth0_ClientSecret"
+            valueFrom:
+              secretKeyRef: 
+                name: auth0-contents-secrets
+                key: Auth0_ClientSecret
+          - name: "Auth0_Audience"
+            valueFrom:
+              secretKeyRef: 
+                name: auth0-contents-secrets
+                key: Auth0_Audience
           - name: "JwtAuthentication_ValidAudience"
             valueFrom:
               secretKeyRef: 
