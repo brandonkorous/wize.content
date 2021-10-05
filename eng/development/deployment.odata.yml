@@ -51,11 +51,6 @@ spec:
               secretKeyRef: 
                 name: authentication-contents-secrets
                 key: JwtAuthentication_ValidIssuer
-          - name: "JwtAuthentication_SecurityKey"
-            valueFrom:
-              secretKeyRef: 
-                name: authentication-contents-secrets
-                key: JwtAuthentication_SecurityKey
           - name: "ConnectionStrings_WizeWorksContext"
             valueFrom:
               secretKeyRef: 
