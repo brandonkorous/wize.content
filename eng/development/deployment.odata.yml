@@ -21,26 +21,6 @@ spec:
           env:
           - name: "ASPNETCORE_ENVIRONMENT"
             value: "Development"
-          - name: "Auth0_Authority"
-            valueFrom:
-              secretKeyRef: 
-                name: auth0-content-secrets
-                key: Auth0_Authority
-          - name: "Auth0_ClientId"
-            valueFrom:
-              secretKeyRef: 
-                name: auth0-content-secrets
-                key: Auth0_ClientId
-          - name: "Auth0_ClientSecret"
-            valueFrom:
-              secretKeyRef: 
-                name: auth0-content-secrets
-                key: Auth0_ClientSecret
-          - name: "Auth0_Audience"
-            valueFrom:
-              secretKeyRef: 
-                name: auth0-content-secrets
-                key: Auth0_Audience
           - name: "JwtAuthentication_ValidAudience"
             valueFrom:
               secretKeyRef: 
@@ -51,6 +31,11 @@ spec:
               secretKeyRef: 
                 name: authentication-content-secrets
                 key: JwtAuthentication_ValidIssuer
+          - name: "JwtAuthentication_SecurityKey"
+            valueFrom:
+              secretKeyRef: 
+                name: authentication-content-secrets
+                key: JwtAuthentication_SecurityKey
           - name: "ConnectionStrings_WizeWorksContext"
             valueFrom:
               secretKeyRef: 
@@ -61,13 +46,13 @@ spec:
               secretKeyRef: 
                 name: connectionstrings-content-secrets
                 key: ConnectionStrings_TenantsContext
-          - name: "ConnectionStrings_AzureBlobStorage"
+          - name: "ConnectionStrings_ApplicationInsights"
             valueFrom:
               secretKeyRef: 
                 name: connectionstrings-content-secrets
-                key: ConnectionStrings_AzureBlobStorage
-          - name: "ApplicationInsights_ConnectionString"
+                key: ConnectionStrings_ApplicationInsights
+          - name: "ConnectionStrings_Sentry"
             valueFrom:
               secretKeyRef: 
-                name: appinsights-content-secrets
-                key: ApplicationInsights_ConnectionString
+                name: connectionstrings-content-secrets
+                key: ConnectionStrings_Sentry
