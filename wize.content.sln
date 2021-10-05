@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{FA4247C2-8B48-46BB-A62D-83B83AD79AD8}"
+	ProjectSection(SolutionItems) = preProject
+		docs\ReadMe.md = docs\ReadMe.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8BE919DB-FF34-43E2-A5F9-4579FE8A0D0F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DBE02683-D4F4-4E72-972D-331FF89F84DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wize.content.data", "src\wize.content.data\wize.content.data.csproj", "{3A4BCDD0-73D3-43AA-96FA-66C5218BE962}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wize.content.data.Tests", "tests\wize.content.data.Tests\wize.content.data.Tests.csproj", "{A37A8784-53D9-4D91-9B67-3F82BB613255}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wize.content.odata", "src\wize.content.odata\wize.content.odata.csproj", "{7663D9BC-F1AE-48C7-87B2-EA0B811D65E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eng", "eng", "{0E674AD3-4FD4-4853-A110-9464AF805275}"
+	ProjectSection(SolutionItems) = preProject
+		eng\ReadMe.md = eng\ReadMe.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "development", "development", "{498AE0F1-636A-4144-95CE-1BC7310BC448}"
+	ProjectSection(SolutionItems) = preProject
+		eng\development\azure-pipelines.odata.yml = eng\development\azure-pipelines.odata.yml
+		eng\development\deployment.odata.yml = eng\development\deployment.odata.yml
+		eng\development\service.odata.yml = eng\development\service.odata.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A4BCDD0-73D3-43AA-96FA-66C5218BE962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A4BCDD0-73D3-43AA-96FA-66C5218BE962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A4BCDD0-73D3-43AA-96FA-66C5218BE962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A4BCDD0-73D3-43AA-96FA-66C5218BE962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A37A8784-53D9-4D91-9B67-3F82BB613255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A37A8784-53D9-4D91-9B67-3F82BB613255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A37A8784-53D9-4D91-9B67-3F82BB613255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A37A8784-53D9-4D91-9B67-3F82BB613255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7663D9BC-F1AE-48C7-87B2-EA0B811D65E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7663D9BC-F1AE-48C7-87B2-EA0B811D65E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7663D9BC-F1AE-48C7-87B2-EA0B811D65E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7663D9BC-F1AE-48C7-87B2-EA0B811D65E9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3A4BCDD0-73D3-43AA-96FA-66C5218BE962} = {8BE919DB-FF34-43E2-A5F9-4579FE8A0D0F}
+		{A37A8784-53D9-4D91-9B67-3F82BB613255} = {DBE02683-D4F4-4E72-972D-331FF89F84DE}
+		{7663D9BC-F1AE-48C7-87B2-EA0B811D65E9} = {8BE919DB-FF34-43E2-A5F9-4579FE8A0D0F}
+		{498AE0F1-636A-4144-95CE-1BC7310BC448} = {0E674AD3-4FD4-4853-A110-9464AF805275}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90713CF6-4A2E-4529-A549-49F605650F08}
+	EndGlobalSection
+EndGlobal

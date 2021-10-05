@@ -1,0 +1,73 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: wizecontentodata-deployment
+  namespace: development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: wizecontentodata
+  template:
+    metadata:
+      labels:
+        app: wizecontentodata 
+    spec:
+      containers:
+        - name: wizecontentodata 
+          image: brandonkorouscontainers.azurecr.io/wizecontentodata
+          ports:
+          - containerPort: 80
+          env:
+          - name: "ASPNETCORE_ENVIRONMENT"
+            value: "Development"
+          - name: "Auth0_Authority"
+            valueFrom:
+              secretKeyRef: 
+                name: auth0-content-secrets
+                key: Auth0_Authority
+          - name: "Auth0_ClientId"
+            valueFrom:
+              secretKeyRef: 
+                name: auth0-content-secrets
+                key: Auth0_ClientId
+          - name: "Auth0_ClientSecret"
+            valueFrom:
+              secretKeyRef: 
+                name: auth0-content-secrets
+                key: Auth0_ClientSecret
+          - name: "Auth0_Audience"
+            valueFrom:
+              secretKeyRef: 
+                name: auth0-content-secrets
+                key: Auth0_Audience
+          - name: "JwtAuthentication_ValidAudience"
+            valueFrom:
+              secretKeyRef: 
+                name: authentication-content-secrets
+                key: JwtAuthentication_ValidAudience
+          - name: "JwtAuthentication_ValidIssuer"
+            valueFrom:
+              secretKeyRef: 
+                name: authentication-content-secrets
+                key: JwtAuthentication_ValidIssuer
+          - name: "ConnectionStrings_WizeWorksContext"
+            valueFrom:
+              secretKeyRef: 
+                name: connectionstrings-content-secrets
+                key: ConnectionStrings_WizeWorksContext
+          - name: "ConnectionStrings_TenantsContext"
+            valueFrom:
+              secretKeyRef: 
+                name: connectionstrings-content-secrets
+                key: ConnectionStrings_TenantsContext
+          - name: "ConnectionStrings_AzureBlobStorage"
+            valueFrom:
+              secretKeyRef: 
+                name: connectionstrings-content-secrets
+                key: ConnectionStrings_AzureBlobStorage
+          - name: "ApplicationInsights_ConnectionString"
+            valueFrom:
+              secretKeyRef: 
+                name: appinsights-content-secrets
+                key: ApplicationInsights_ConnectionString
