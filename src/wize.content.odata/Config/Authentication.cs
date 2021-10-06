@@ -33,11 +33,11 @@ namespace wize.content.odata.Config
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("read:image", policy => policy.Requirements.Add(new HasScopeRequirement("read:image", jwt.ValidIssuer)));
-                options.AddPolicy("add:image", policy => policy.Requirements.Add(new HasScopeRequirement("add:image", jwt.ValidIssuer)));
-                options.AddPolicy("list:image", policy => policy.Requirements.Add(new HasScopeRequirement("list:image", jwt.ValidIssuer)));
-                options.AddPolicy("update:image", policy => policy.Requirements.Add(new HasScopeRequirement("update:image", jwt.ValidIssuer)));
-                options.AddPolicy("delete:image", policy => policy.Requirements.Add(new HasScopeRequirement("delete:image", jwt.ValidIssuer)));
+                options.AddPolicy("read:content", policy => policy.Requirements.Add(new HasScopeRequirement("read:content", jwt.ValidIssuer)));
+                options.AddPolicy("add:content", policy => policy.Requirements.Add(new HasScopeRequirement("add:content", jwt.ValidIssuer)));
+                options.AddPolicy("list:content", policy => policy.Requirements.Add(new HasScopeRequirement("list:content", jwt.ValidIssuer)));
+                options.AddPolicy("update:content", policy => policy.Requirements.Add(new HasScopeRequirement("update:content", jwt.ValidIssuer)));
+                options.AddPolicy("delete:content", policy => policy.Requirements.Add(new HasScopeRequirement("delete:content", jwt.ValidIssuer)));
             });
 
             return services;
