@@ -19,7 +19,6 @@ namespace wize.content.odata.V1
 {
     [ApiVersion("1.0")]
     [ODataRoutePrefix("[controller]")]
-    [Authorize]
     public abstract class BaseODataController<TKey, TModel> : ODataController where TModel : class
     {
         private readonly WizeContext _context;
@@ -90,6 +89,7 @@ namespace wize.content.odata.V1
         /// </summary>
         /// <param name="model">Data model</param>
         /// <returns>Data model</returns>
+        [Authorize("add:content")]
         [ODataRoute]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -119,7 +119,7 @@ namespace wize.content.odata.V1
         /// <param name="id">Key value</param>
         /// <param name="delta">Delta changeset</param>
         /// <returns>Data model</returns>
-        /// 
+        [Authorize("update:content")]
         [HttpPatch]
         [ODataRoute("({id})")]
         [Produces("application/json")]
@@ -159,7 +159,7 @@ namespace wize.content.odata.V1
         /// <param name="id">Key value</param>
         /// <param name="model">Data model</param>
         /// <returns>Data model</returns>
-        ///
+        [Authorize("update:content")]
         [HttpPut]
         [ODataRoute("({id})")]
         [Produces("application/json")]
@@ -203,6 +203,7 @@ namespace wize.content.odata.V1
         /// </summary>
         /// <param name="id">Key value</param>
         /// <returns></returns>
+        [Authorize("delete:content")]
         [ODataRoute("({id})")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
