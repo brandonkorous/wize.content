@@ -33,7 +33,11 @@ namespace wize.content.odata.Config
 
             services.AddAuthorization(options =>
             {
-                //options.AddPolicy("read:images", policy => policy.Requirements.Add(new HasScopeRequirement("read:images", jwt.ValidIssuer)));
+                options.AddPolicy("read:image", policy => policy.Requirements.Add(new HasScopeRequirement("read:image", jwt.ValidIssuer)));
+                options.AddPolicy("add:image", policy => policy.Requirements.Add(new HasScopeRequirement("add:image", jwt.ValidIssuer)));
+                options.AddPolicy("list:image", policy => policy.Requirements.Add(new HasScopeRequirement("list:image", jwt.ValidIssuer)));
+                options.AddPolicy("update:image", policy => policy.Requirements.Add(new HasScopeRequirement("update:image", jwt.ValidIssuer)));
+                options.AddPolicy("delete:image", policy => policy.Requirements.Add(new HasScopeRequirement("delete:image", jwt.ValidIssuer)));
             });
 
             return services;
