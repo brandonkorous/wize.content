@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +40,7 @@ namespace wize.content.odata.Config
                 options.AddPolicy("update:content", policy => policy.Requirements.Add(new HasScopeRequirement("update:content", jwt.ValidIssuer)));
                 options.AddPolicy("delete:content", policy => policy.Requirements.Add(new HasScopeRequirement("delete:content", jwt.ValidIssuer)));
             });
+            services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
             return services;
         }

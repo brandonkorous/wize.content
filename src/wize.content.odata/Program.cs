@@ -18,6 +18,11 @@ namespace wize.content.odata
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                config.AddEnvironmentVariables();
+                config.AddJsonFile("appsettings.development.user.json", optional: true, reloadOnChange: true);
+            })
             .ConfigureLogging(logging =>
             {
                 logging.AddConsole();

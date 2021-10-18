@@ -55,6 +55,8 @@ namespace wize.content.odata
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSentryTracing();
+
             app.UseJwt();
             app.UseOpenAPI(provider);
             app.UseODataMvc(builder);
