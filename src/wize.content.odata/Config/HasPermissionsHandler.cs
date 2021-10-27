@@ -11,7 +11,7 @@ namespace wize.content.odata.Config
             if (!context.User.HasClaim(c => c.Type == "permissions" && c.Issuer == requirement.Issuer))
                 return Task.CompletedTask;
 
-            var scopes = context.User.FindAll(c => c.Type == "permissions" && c.Issuer == requirement.Issuer)
+            var scopes = context.User.FindAll(c => c.Type == "permissions" && c.Issuer == requirement.Issuer);
 
             if (scopes.Any(p => p.Value == requirement.Permissions))
                 context.Succeed(requirement);
