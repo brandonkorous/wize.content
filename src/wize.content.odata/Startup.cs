@@ -27,6 +27,7 @@ namespace wize.content.odata
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddApiVersioning(options => options.ReportApiVersions = true);
             services.AddJwt(Configuration);
@@ -36,13 +37,13 @@ namespace wize.content.odata
             services.AddTransient<ITenantProvider, TenantDatabaseProvider>();
             services.AddDbContext<WizeContext>(options =>
             {
-                options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionStrings_WizeWorksContext"));
+                options.UseSqlServer(Configuration.GetValue<string>("ConnectionStrings_WizeWorksContext"));
             });
             services.AddDbContext<TenantContext>(options =>
             {
-                options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionStrings_TenantsContext"));
+                options.UseSqlServer(Configuration.GetValue<string>("ConnectionStrings_TenantsContext"));
             });
-            services.AddApplicationInsightsTelemetry(Environment.GetEnvironmentVariable("ConnectionStrings_ApplicationInsights"));
+            services.AddApplicationInsightsTelemetry(Configuration.GetValue<string>("ApplicationInsights_ConnectionString"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,8 +53,8 @@ namespace wize.content.odata
             {
                 //app.UseDeveloperExceptionPage();
             }
-            app.UseStaticFiles();
-
+            //app.UseStaticFiles();
+            app.UseCors(c => c.WithHeaders("ducks-referrer").AllowAnyOrigin());
             app.UseRouting();
             app.UseSentryTracing();
 

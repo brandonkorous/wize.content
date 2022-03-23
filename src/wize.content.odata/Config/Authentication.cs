@@ -16,8 +16,8 @@ namespace wize.content.odata.Config
         public static IServiceCollection AddJwt(this IServiceCollection services, IConfiguration configuration)
         {
             JwtModel jwt = new JwtModel();
-            jwt.ValidAudience = Environment.GetEnvironmentVariable("JwtAuthentication_ValidAudience");
-            jwt.ValidIssuer = Environment.GetEnvironmentVariable("JwtAuthentication_ValidIssuer");
+            jwt.ValidAudience = configuration.GetValue<string>("JwtAuthentication_ValidAudience");
+            jwt.ValidIssuer = configuration.GetValue<string>("JwtAuthentication_ValidIssuer");
 
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -30,6 +30,14 @@ namespace wize.content.odata.Config
                 options.Authority = jwt.ValidIssuer;
                 options.Audience = jwt.ValidAudience;
                 //options.TokenValidationParameters = tokenParameters;
+            }).AddJwtBearer("apione", options =>
+            {
+                options.Authority = "publicb2c";
+                options.Audience = jwt.ValidAudience;
+            }).AddJwtBearer("apitwo", options =>
+            {
+                options.Authority = "privateb2c";
+                options.Audience = jwt.ValidAudience;
             });
 
             services.AddAuthorization(options =>

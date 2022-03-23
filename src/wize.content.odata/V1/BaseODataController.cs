@@ -17,6 +17,7 @@ using Sentry;
 
 namespace wize.content.odata.V1
 {
+    [Authorize]
     [ApiVersion("1.0")]
     [ODataRoutePrefix("[controller]")]
     public abstract class BaseODataController<TKey, TModel> : ODataController where TModel : class
@@ -36,6 +37,7 @@ namespace wize.content.odata.V1
         /// This method will return the requested Dataset.
         /// </summary>
         /// <returns>IQueryable of requested type.</returns>
+        [Authorize("list:content")]
         [ODataRoute]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -59,6 +61,7 @@ namespace wize.content.odata.V1
         /// </summary>
         /// <param name="id">Key value</param>
         /// <returns>Data model</returns>
+        [Authorize("list:content")]
         [ODataRoute("({id})")]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
