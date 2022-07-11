@@ -28,7 +28,7 @@ namespace wize.content.odata.Config
             var edmModels = builder.GetEdmModels();
             app.UseMvc(options =>
             {
-                options.EnableDependencyInjection();
+                //options.EnableDependencyInjection();
                 options.Select().Filter().Count().Expand().OrderBy().SkipToken().MaxTop(100);
                 options.ServiceProvider.GetRequiredService<ODataOptions>().UrlKeyDelimiter = Microsoft.OData.ODataUrlKeyDelimiter.Parentheses;
 
