@@ -18,35 +18,47 @@ namespace wize.content.odata.Config
             JwtModel jwt = new JwtModel();
             jwt.ValidAudience = configuration.GetValue<string>("JwtAuthentication_ValidAudience");
             jwt.ValidIssuer = configuration.GetValue<string>("JwtAuthentication_ValidIssuer");
-
-            services.AddAuthentication(options => {
+            
+            services.AddAuthentication(options =>
+            {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidIssuer = jwt.ValidIssuer,
+                    ValidAudience = jwt.ValidAudience,
+                };
+                options.SaveToken = true;
                 options.IncludeErrorDetails = true;
                 options.RequireHttpsMetadata = false;
                 options.Authority = jwt.ValidIssuer;
                 options.Audience = jwt.ValidAudience;
                 //options.TokenValidationParameters = tokenParameters;
-            }).AddJwtBearer("apione", options =>
-            {
-                options.Authority = "publicb2c";
-                options.Audience = jwt.ValidAudience;
-            }).AddJwtBearer("apitwo", options =>
-            {
-                options.Authority = "privateb2c";
-                options.Audience = jwt.ValidAudience;
             });
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("read:content", policy => policy.Requirements.Add(new HasPermissionsRequirement("read:content", jwt.ValidIssuer)));
-                options.AddPolicy("add:content", policy => policy.Requirements.Add(new HasPermissionsRequirement("add:content", jwt.ValidIssuer)));
-                options.AddPolicy("list:content", policy => policy.Requirements.Add(new HasPermissionsRequirement("list:content", jwt.ValidIssuer)));
-                options.AddPolicy("update:content", policy => policy.Requirements.Add(new HasPermissionsRequirement("update:content", jwt.ValidIssuer)));
-                options.AddPolicy("delete:content", policy => policy.Requirements.Add(new HasPermissionsRequirement("delete:content", jwt.ValidIssuer)));
+                options.AddPolicy("read:content", policy => {
+                    policy.Requirements.Add(new HasPermissionsRequirement("read:content", jwt.ValidIssuer));
+                });
+                options.AddPolicy("add:content", policy => {
+                    policy.Requirements.Add(new HasPermissionsRequirement("add:content", jwt.ValidIssuer));
+                });
+                options.AddPolicy("list:content", policy => {
+                    policy.Requirements.Add(new HasPermissionsRequirement("list:content", jwt.ValidIssuer));
+                });
+                options.AddPolicy("update:content", policy => {
+                    policy.Requirements.Add(new HasPermissionsRequirement("update:content", jwt.ValidIssuer));
+                });
+                options.AddPolicy("delete:content", policy => {
+                    policy.Requirements.Add(new HasPermissionsRequirement("delete:content", jwt.ValidIssuer));
+                });
             });
             services.AddSingleton<IAuthorizationHandler, HasPermissionsHandler>();
 
@@ -57,6 +69,7 @@ namespace wize.content.odata.Config
         {
             app.UseAuthentication();
             app.UseAuthorization();
+
             return app;
         }
     }

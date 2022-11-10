@@ -52,6 +52,7 @@ namespace wize.content.odata
             if (env.IsDevelopment())
             {
                 //app.UseDeveloperExceptionPage();
+                Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
             }
             //app.UseStaticFiles();
             app.UseCors(c => c.WithHeaders("ducks-referrer").AllowAnyOrigin());
